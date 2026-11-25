@@ -14,22 +14,24 @@ import net.datafaker.Faker;
 @SpringBootTest
 @AutoConfigureRestTestClient
 public class AddUserTest {
-   @Autowired 
-   private RestTestClient restTestClient;
-   private Faker faker = new Faker();
+      @Autowired
+      private RestTestClient restTestClient;
+      private Faker faker = new Faker();
 
-   @Test
-   void shouldCreateUser() {
-      restTestClient.post()
-         .uri("/auth/signup")
-         .contentType(MediaType.APPLICATION_JSON)
-         .body(Map.of(
-            "name", faker.name().fullName(),
-            "username", faker.internet().emailAddress(),
-            "password", faker.credentials().password()
-         ))
-         .exchange()
-         .expectStatus()
-         .isCreated();
-   }
+      @Test
+      void shouldCreateUser() {
+            restTestClient.post()
+                        .uri("/api/auth/signup")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(Map.of(
+                                    "name", faker.name().fullName(),
+                                    "username", faker.internet().emailAddress(),
+                                    "password", faker.credentials().password()))
+                        .exchange()
+                        .expectStatus()
+                        .isCreated()
+                        .expectBody()
+                        .jsonPath("$.password")
+                        .doesNotExist();
+      }
 }
