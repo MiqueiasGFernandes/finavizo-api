@@ -7,10 +7,10 @@ public class UserEntity {
     public UUID id;
     public String name;
     public String username;
-    public Date createdAt;
-    public boolean enabled;
+    private Date createdAt;
+    private boolean enabled;
 
-    public UserEntity(){
+    public UserEntity() {
         this.enabled = false;
         this.createdAt = new Date();
     }

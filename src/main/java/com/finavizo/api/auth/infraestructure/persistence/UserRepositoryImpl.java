@@ -1,6 +1,5 @@
 package com.finavizo.api.auth.infraestructure.persistence;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finavizo.api.auth.domain.entities.UserEntity;
@@ -9,11 +8,14 @@ import com.finavizo.api.auth.domain.repositories.UserRepository;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    @Autowired
-    private UserJpaRepository jpaRepository;
+    private final UserJpaRepository jpaRepository;
 
-    @Autowired
-    private PersistenceUserMapper mapper;
+    private final PersistenceUserMapper mapper;
+
+    UserRepositoryImpl(UserJpaRepository jpaRepository, PersistenceUserMapper mapper) {
+        this.jpaRepository = jpaRepository;
+        this.mapper = mapper;
+    }
 
     @Override
     public int countByUsername(String username) {

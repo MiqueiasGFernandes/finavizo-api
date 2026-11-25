@@ -1,17 +1,18 @@
 package com.finavizo.api.auth.application.command;
 
-public class AddUserCommand {
-    public String name;
-    public String username;
-    public String password;
+import jakarta.validation.constraints.*;
 
-    public AddUserCommand(
-        String name,
-        String username,
-        String password
-    ) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
-    }
+public class AddUserCommand {
+    @NotBlank
+    @Max(200)
+    public String name;
+    @NotBlank
+    @Email
+    @Max(500)
+    public String username;
+    @NotBlank
+    @Min(6)
+    @Max(12)
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\p{P}\\p{S}]).{8,}$", message = "The password must contain: letters, numbers and especial characters")
+    public String password;
 }

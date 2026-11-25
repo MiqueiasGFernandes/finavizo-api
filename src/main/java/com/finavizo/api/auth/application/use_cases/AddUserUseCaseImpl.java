@@ -1,6 +1,5 @@
 package com.finavizo.api.auth.application.use_cases;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finavizo.api.auth.application.command.AddUserCommand;
@@ -13,11 +12,14 @@ import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 
 @Service
 public class AddUserUseCaseImpl implements AddUserUseCase {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private ApplicationuserMapper userMapper;
+    private final ApplicationuserMapper userMapper;
+
+    AddUserUseCaseImpl(UserRepository userRepository, ApplicationuserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
 
     private boolean _hasConflict(String username) {
         int user = this.userRepository.countByUsername(username);
