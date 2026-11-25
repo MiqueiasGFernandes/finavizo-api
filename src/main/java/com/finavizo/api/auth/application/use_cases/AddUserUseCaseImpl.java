@@ -7,6 +7,7 @@ import com.finavizo.api.auth.application.dto.AddUserOutputDto;
 import com.finavizo.api.auth.application.mapper.ApplicationuserMapper;
 import com.finavizo.api.auth.domain.entities.UserEntity;
 import com.finavizo.api.auth.domain.exceptions.UserAlreadyExistsException;
+import com.finavizo.api.auth.domain.ports.PasswordHasherPort;
 import com.finavizo.api.auth.domain.repositories.UserRepository;
 import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 
@@ -16,9 +17,15 @@ public class AddUserUseCaseImpl implements AddUserUseCase {
 
     private final ApplicationuserMapper userMapper;
 
-    AddUserUseCaseImpl(UserRepository userRepository, ApplicationuserMapper userMapper) {
+    private final PasswordHasherPort passwordEncoderPort;
+
+    AddUserUseCaseImpl(
+            UserRepository userRepository,
+            ApplicationuserMapper userMapper,
+            PasswordHasherPort passwordEncoderPort) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoderPort = passwordEncoderPort;
     }
 
     private boolean _hasConflict(String username) {
@@ -29,6 +36,8 @@ public class AddUserUseCaseImpl implements AddUserUseCase {
     @Override
     public AddUserOutputDto execute(AddUserCommand newUser) {
         UserEntity user = this.userMapper.toDomain(newUser);
+
+        user.password = passwordEncoderPort.hash(user.password);
 
         if (this._hasConflict(user.username)) {
             throw new UserAlreadyExistsException(user.username);

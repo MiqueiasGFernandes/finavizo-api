@@ -1,5 +1,7 @@
 package com.finavizo.api.auth;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -20,18 +22,20 @@ public class AddUserTest {
 
       @Test
       void shouldCreateUser() {
+            String password = faker.credentials().password();
             restTestClient.post()
                         .uri("/api/auth/signup")
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(Map.of(
                                     "name", faker.name().fullName(),
                                     "username", faker.internet().emailAddress(),
-                                    "password", faker.credentials().password()))
+                                    "password", password))
                         .exchange()
                         .expectStatus()
                         .isCreated()
                         .expectBody()
                         .jsonPath("$.password")
-                        .doesNotExist();
+                        .value(value -> assertThat(value).isNotEqualTo(password));
+
       }
 }

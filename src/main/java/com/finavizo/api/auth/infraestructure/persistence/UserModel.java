@@ -12,13 +12,14 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 public class UserModel {
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID id;
 
     public String name;
     public String username;
 
+    public String password;
     public boolean enabled;
     public Date createdAt;
 
