@@ -5,22 +5,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.client.RestTestClient;
 
-import net.datafaker.Faker;
+import com.finavizo.fixtures.BaseE2ETest;
 
 @SpringBootTest
 @AutoConfigureRestTestClient
-public class AddUserTest {
-      @Autowired
-      private RestTestClient restTestClient;
-      private Faker faker = new Faker();
-
+public class AddUserTest extends BaseE2ETest {
       @Test
       void shouldCreateUser() {
             String password = faker.credentials().password();
@@ -64,4 +58,5 @@ public class AddUserTest {
                         .expectStatus()
                         .isEqualTo(HttpStatus.CONFLICT);
       }
+
 }
