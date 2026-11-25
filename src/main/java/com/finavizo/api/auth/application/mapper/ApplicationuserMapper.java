@@ -1,6 +1,7 @@
 package com.finavizo.api.auth.application.mapper;
 
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
 import com.finavizo.api.auth.application.command.AddUserCommand;
 import com.finavizo.api.auth.application.dto.AddUserOutputDto;

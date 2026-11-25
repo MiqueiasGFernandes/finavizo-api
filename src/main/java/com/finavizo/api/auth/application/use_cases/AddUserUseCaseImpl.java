@@ -13,26 +13,26 @@ import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 
 @Service
 public class AddUserUseCaseImpl implements AddUserUseCase {
-    @Autowired 
+    @Autowired
     private UserRepository userRepository;
 
-    @Autowired 
+    @Autowired
     private ApplicationuserMapper userMapper;
 
     private boolean _hasConflict(String username) {
-        int user = this.userRepository.countByEmail(username);
+        int user = this.userRepository.countByUsername(username);
         return user > 0;
     }
 
     @Override
-    public AddUserOutputDto execute(AddUserCommand newUser) { 
+    public AddUserOutputDto execute(AddUserCommand newUser) {
         UserEntity user = this.userMapper.toDomain(newUser);
 
-        if(this._hasConflict(user.username)) {
+        if (this._hasConflict(user.username)) {
             throw new UserAlreadyExistsException(user.username);
         }
 
         return this.userMapper.toDto(this.userRepository.create(user));
     }
-    
+
 }
