@@ -2,7 +2,7 @@
 
 **Português (Brasil)** · [English (US)](README.en_US.md)
 
-A Finavizo API oferece um endpoint REST para cadastro de usuários. A aplicação usa Spring Boot, verifica se o e-mail já está cadastrado e grava o usuário no PostgreSQL com um hash BCrypt da senha.
+A Finavizo é um projeto de API para finanças pessoais. Esta etapa inicial prepara o cadastro de usuários que poderão acessar o projeto. A API usa Spring Boot, verifica se o e-mail já está cadastrado e grava o usuário no PostgreSQL com a senha protegida por hash BCrypt.
 
 ## Executar localmente
 

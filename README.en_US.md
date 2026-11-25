@@ -2,7 +2,7 @@
 
 [Português (Brasil)](README.md) · **English (US)**
 
-The Finavizo API provides a REST endpoint for user registration. The Spring Boot application checks whether the email address is already registered and saves the user in PostgreSQL with a BCrypt password hash.
+Finavizo is a personal finance API project. This initial stage provides user registration for people who will access the project. The Spring Boot API checks whether the email address is already registered and saves the user in PostgreSQL with a BCrypt password hash.
 
 ## Run locally
 
