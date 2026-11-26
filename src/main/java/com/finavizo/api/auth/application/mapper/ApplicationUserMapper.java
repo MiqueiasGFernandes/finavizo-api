@@ -7,7 +7,7 @@ import com.finavizo.api.auth.application.dto.AddUserOutputDto;
 import com.finavizo.api.auth.domain.entities.UserEntity;
 
 @Mapper(componentModel = "spring")
-public interface ApplicationuserMapper {
+public interface ApplicationUserMapper {
     UserEntity toDomain(AddUserCommand user);
 
     AddUserOutputDto toDto(UserEntity user);

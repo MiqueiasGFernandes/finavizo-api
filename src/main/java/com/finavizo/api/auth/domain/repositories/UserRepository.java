@@ -6,4 +6,6 @@ public interface UserRepository {
     int countByUsername(String username);
 
     UserEntity create(UserEntity newUser);
+
+    UserEntity findOneByUsername(String email);
 }

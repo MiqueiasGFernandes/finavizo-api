@@ -28,4 +28,10 @@ public class UserRepositoryImpl implements UserRepository {
         newUserToModel = this.jpaRepository.save(newUserToModel);
         return this.mapper.toDomain(newUserToModel);
     }
+
+    @Override
+    public UserEntity findOneByUsername(String username) {
+        UserModel user = this.jpaRepository.findOneByUsername(username);
+        return this.mapper.toDomain(user);
+    }
 }

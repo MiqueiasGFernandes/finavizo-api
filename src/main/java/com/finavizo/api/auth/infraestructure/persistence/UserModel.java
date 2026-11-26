@@ -22,9 +22,4 @@ public class UserModel {
     public String password;
     public boolean enabled;
     public Date createdAt;
-
-    public UserModel(String name, String username) {
-        this.name = name;
-        this.username = username;
-    }
 }

@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.finavizo.api.auth.application.command.AddUserCommand;
+import com.finavizo.api.auth.application.command.LoginCommand;
 import com.finavizo.api.auth.application.dto.AddUserOutputDto;
+import com.finavizo.api.auth.application.dto.SessionOutputDto;
+import com.finavizo.api.auth.domain.use_cases.AddSessionUseCase;
 import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 
 @RestController
@@ -16,14 +19,24 @@ import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 public class RestAuthController {
     private final AddUserUseCase addUserUseCase;
 
-    RestAuthController(AddUserUseCase addUserUseCase) {
+    private final AddSessionUseCase addSessionuseCase;
+
+    RestAuthController(
+            AddUserUseCase addUserUseCase,
+            AddSessionUseCase addSessionUseCase) {
         this.addUserUseCase = addUserUseCase;
+        this.addSessionuseCase = addSessionUseCase;
     }
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public AddUserOutputDto createUser(@RequestBody AddUserCommand entity) {
         return this.addUserUseCase.execute(entity);
+    }
+
+    @PostMapping("/login")
+    public SessionOutputDto login(@RequestBody LoginCommand input) {
+        return this.addSessionuseCase.execute(input);
     }
 
 }

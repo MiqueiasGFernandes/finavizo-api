@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.finavizo.api.auth.application.command.AddUserCommand;
 import com.finavizo.api.auth.application.dto.AddUserOutputDto;
-import com.finavizo.api.auth.application.mapper.ApplicationuserMapper;
+import com.finavizo.api.auth.application.mapper.ApplicationUserMapper;
 import com.finavizo.api.auth.domain.entities.UserEntity;
 import com.finavizo.api.auth.domain.exceptions.UserAlreadyExistsException;
 import com.finavizo.api.auth.domain.ports.PasswordHasherPort;
@@ -15,13 +15,13 @@ import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 public class AddUserUseCaseImpl implements AddUserUseCase {
     private final UserRepository userRepository;
 
-    private final ApplicationuserMapper userMapper;
+    private final ApplicationUserMapper userMapper;
 
     private final PasswordHasherPort passwordEncoderPort;
 
     AddUserUseCaseImpl(
             UserRepository userRepository,
-            ApplicationuserMapper userMapper,
+            ApplicationUserMapper userMapper,
             PasswordHasherPort passwordEncoderPort) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
