@@ -34,6 +34,42 @@ public class AddUserTest extends BaseE2ETest {
 
       }
 
+      // @Test
+      // void shouldRejectStronglessPasswordsWithOnlyNumbers() {
+      // this.restTestClient
+      // .post()
+      // .uri("/api/auth/signup")
+      // .body(Map.of(
+      // "name", faker.name().fullName(),
+      // "username", faker.internet().emailAddress(),
+      // "password", "123456"))
+      // .exchange()
+      // .expectStatus()
+      // .isEqualTo(HttpStatus.UNPROCESSABLE_CONTENT)
+      // .expectBody()
+      // .jsonPath("$.detail")
+      // .isEqualTo("The password must contain: letters, numbers and especial
+      // characters.");
+      // }
+
+      // @Test
+      // void shouldRejectStronglessPasswordsWithOnlyLetters() {
+      // this.restTestClient
+      // .post()
+      // .uri("/api/auth/signup")
+      // .body(Map.of(
+      // "name", faker.name().fullName(),
+      // "username", faker.internet().emailAddress(),
+      // "password", "casaldia"))
+      // .exchange()
+      // .expectStatus()
+      // .isEqualTo(HttpStatus.UNPROCESSABLE_CONTENT)
+      // .expectBody()
+      // .jsonPath("$.detail")
+      // .isEqualTo("The password must contain: letters, numbers and especial
+      // characters.");
+      // }
+
       @Test
       void shouldReturnConflit() {
             String duplicatedUsername = faker.internet().emailAddress();

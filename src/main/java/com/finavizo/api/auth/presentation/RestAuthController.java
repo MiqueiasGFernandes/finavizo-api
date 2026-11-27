@@ -14,6 +14,8 @@ import com.finavizo.api.auth.application.dto.SessionOutputDto;
 import com.finavizo.api.auth.domain.use_cases.AddSessionUseCase;
 import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 public class RestAuthController {
@@ -30,12 +32,12 @@ public class RestAuthController {
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    public AddUserOutputDto createUser(@RequestBody AddUserCommand entity) {
+    public AddUserOutputDto createUser(@Valid @RequestBody AddUserCommand entity) {
         return this.addUserUseCase.execute(entity);
     }
 
     @PostMapping("/login")
-    public SessionOutputDto login(@RequestBody LoginCommand input) {
+    public SessionOutputDto login(@Valid @RequestBody LoginCommand input) {
         return this.addSessionuseCase.execute(input);
     }
 

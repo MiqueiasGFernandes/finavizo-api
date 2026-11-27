@@ -11,17 +11,20 @@ public class AddSessionTest extends BaseE2ETest {
 
         private UserEntity makePreviousUser() {
                 var username = faker.internet().emailAddress();
-                var password = faker.credentials().password();
+                var password = faker.credentials().password(8, 30, true);
 
                 this.restTestClient
                                 .post()
                                 .uri("/api/auth/signup")
                                 .body(Map.of(
+                                                "name", faker.name().fullName(),
                                                 "username", username,
                                                 "password", password
 
                                 ))
-                                .exchange();
+                                .exchange()
+                                .expectStatus()
+                                .isCreated();
                 var credentials = new UserEntity();
 
                 credentials.password = password;
