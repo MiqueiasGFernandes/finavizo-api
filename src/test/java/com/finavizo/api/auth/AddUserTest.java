@@ -19,7 +19,7 @@ public class AddUserTest extends BaseE2ETest {
       void shouldCreateUser() {
             String password = faker.credentials().password();
             restTestClient.post()
-                        .uri("/api/auth/signup")
+                        .uri("/api/v1/auth/signup")
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(Map.of(
                                     "name", faker.name().fullName(),
@@ -38,7 +38,7 @@ public class AddUserTest extends BaseE2ETest {
       // void shouldRejectStronglessPasswordsWithOnlyNumbers() {
       // this.restTestClient
       // .post()
-      // .uri("/api/auth/signup")
+      // .uri("/api/v1/auth/signup")
       // .body(Map.of(
       // "name", faker.name().fullName(),
       // "username", faker.internet().emailAddress(),
@@ -56,7 +56,7 @@ public class AddUserTest extends BaseE2ETest {
       // void shouldRejectStronglessPasswordsWithOnlyLetters() {
       // this.restTestClient
       // .post()
-      // .uri("/api/auth/signup")
+      // .uri("/api/v1/auth/signup")
       // .body(Map.of(
       // "name", faker.name().fullName(),
       // "username", faker.internet().emailAddress(),
@@ -76,7 +76,7 @@ public class AddUserTest extends BaseE2ETest {
 
             restTestClient
                         .post()
-                        .uri("/api/auth/signup")
+                        .uri("/api/v1/auth/signup")
                         .body(Map.of(
                                     "name", faker.name().fullName(),
                                     "username", duplicatedUsername,
@@ -85,7 +85,7 @@ public class AddUserTest extends BaseE2ETest {
 
             restTestClient
                         .post()
-                        .uri("/api/auth/signup")
+                        .uri("/api/v1/auth/signup")
                         .body(Map.of(
                                     "name", faker.name().fullName(),
                                     "username", duplicatedUsername,

@@ -31,10 +31,10 @@ docker compose up -d db
 
 ## Register a user
 
-In another terminal, send a request to `POST /api/auth/signup`. Use the email address as the `username`.
+In another terminal, send a request to `POST /api/v1/auth/signup`. Use the email address as the `username`.
 
 ```bash
-curl -i -X POST http://localhost:8080/api/auth/signup \
+curl -i -X POST http://localhost:8080/api/v1/auth/signup \
   -H 'Content-Type: application/json' \
   -d '{"name":"Alex Silva","username":"alex@example.com","password":"Example42!"}'
 ```

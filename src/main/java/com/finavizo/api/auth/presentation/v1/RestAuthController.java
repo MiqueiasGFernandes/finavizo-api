@@ -1,4 +1,4 @@
-package com.finavizo.api.auth.presentation;
+package com.finavizo.api.auth.presentation.v1;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,7 @@ import com.finavizo.api.auth.domain.use_cases.AddUserUseCase;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 public class RestAuthController {
     private final AddUserUseCase addUserUseCase;
 

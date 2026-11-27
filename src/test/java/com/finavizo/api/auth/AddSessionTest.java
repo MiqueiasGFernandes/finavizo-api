@@ -15,7 +15,7 @@ public class AddSessionTest extends BaseE2ETest {
 
                 this.restTestClient
                                 .post()
-                                .uri("/api/auth/signup")
+                                .uri("/api/v1/auth/signup")
                                 .body(Map.of(
                                                 "name", faker.name().fullName(),
                                                 "username", username,
@@ -37,7 +37,7 @@ public class AddSessionTest extends BaseE2ETest {
         void shouldDenyLoginWhenEmailIsIncorrect() {
                 this.restTestClient
                                 .post()
-                                .uri("/api/auth/login")
+                                .uri("/api/v1/auth/login")
                                 .body(Map.of(
                                                 "username", this.faker.internet().emailAddress(),
                                                 "password", this.faker.credentials().password()))
@@ -52,7 +52,7 @@ public class AddSessionTest extends BaseE2ETest {
                 var username = this.makePreviousUser().username;
                 this.restTestClient
                                 .post()
-                                .uri("/api/auth/login")
+                                .uri("/api/v1/auth/login")
                                 .body(Map.of(
                                                 "username", username,
                                                 "password", faker.credentials().password()))
@@ -68,7 +68,7 @@ public class AddSessionTest extends BaseE2ETest {
 
                 this.restTestClient
                                 .post()
-                                .uri("/api/auth/login")
+                                .uri("/api/v1/auth/login")
                                 .body(Map.of(
                                                 "username", previousUser.username,
                                                 "password", previousUser.password))
